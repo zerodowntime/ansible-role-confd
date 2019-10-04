@@ -1,0 +1,117 @@
+{% if confd__config %}
+{%- if confd__config.backend is not none %}
+backend = "{{ confd__config.backend }}"
+{%  endif %}
+
+{%- if (confd__config.client_cakeys is defined) and (confd__config.client_cakeys is not none) %}
+client_cakeys = "{{ confd__config.client_cakeys }}"
+{%  endif %}
+
+{%- if (confd__config.client_cert is defined) and (confd__config.client_cert is not none) %}
+client_cert = "{{ confd__config.client_cert }}"
+{%  endif %}
+
+{%- if (confd__config.client_key is defined) and (confd__config.client_key is not none) %}
+client_key = "{{ confd__config.client_key }}"
+{%  endif %}
+
+{%- if (confd__config.confdir is defined) and (confd__config.confdir is not none) %}
+confdir = "{{ confd__config.confdir }}"
+{%  endif %}
+
+{%- if (confd__config.interval is defined) and  (confd__config.interval is not none) %}
+interval = {{ confd__config.interval }}
+{%  endif %}
+
+{%- if (confd__config.log_level is defined) and (confd__config.log_level is not none) %}
+log-level = "{{ confd__config.log_level }}"
+{%  endif %}
+
+{%- if (confd__config.nodes is defined) and (confd__config.nodes is not none) %}
+nodes = [{{ confd__config.nodes| map('regex_replace','^(.*)$','"\\1"')|join(', ') }}]
+{%  endif %}
+
+{%- if (confd__config.noop is defined) and (confd__config.noop is not none) %}
+noop = {{ confd__config.noop }}
+{%  endif %}
+
+{%- if (confd__config.prefix is defined) and (confd__config.prefix is not none) %}
+prefix = "{{ confd__config.prefix }}"
+{%  endif %}
+
+{%- if (confd__config.scheme is defined) and (confd__config.scheme is not none) %}
+scheme = "{{ confd__config.scheme }}"
+{%  endif %}
+
+{%- if (confd__config.srv_domain is defined) and (confd__config.srv_domain is not none) %}
+srv_domain = "{{ confd__config.srv_domain }}"
+{%  endif %}
+
+{%- if (confd__config.srv_record is defined) and (confd__config.srv_record is not none) %}
+srv_record = "{{ confd__config.srv_record }}"
+{%  endif %}
+
+{%- if (confd__config.sync_only is defined) and (confd__config.sync_only is not none) %}
+sync-only = {{ confd__config.sync_only }}
+{%  endif %}
+
+{%- if (confd__config.watch is defined) and (confd__config.watch is not none) %}
+watch = {{ confd__config.watch|bool|lower }}
+{%  endif %}
+
+{%- if (confd__config.auth_token is defined) and (confd__config.auth_token is not none) %}
+auth_token = "{{ confd__config.auth_token }}"
+{%  endif %}
+
+{%- if (confd__config.auth_type is defined) and (confd__config.auth_type is not none) %}
+auth_type = "{{ confd__config.auth_type }}"
+{%  endif %}
+
+{%- if (confd__config.basic_auth is defined) and (confd__config.basic_auth is not none) %}
+basic_auth = {{ confd__config.basic_auth }}
+{%  endif %}
+
+{%- if (confd__config.table is defined) and (confd__config.table is not none) %}
+table = "{{ confd__config.table }}"
+{%  endif %}
+
+{%- if (confd__config.separator is defined) and (confd__config.separator is not none) %}
+separator = "{{ confd__config.separator }}"
+{%  endif %}
+
+{%- if (confd__config.username is defined) and (confd__config.username is not none) %}
+username = "{{ confd__config.username }}"
+{%  endif %}
+
+{%- if (confd__config.password is defined) and (confd__config.password is not none) %}
+password = "{{ confd__config.password }}"
+{%  endif %}
+
+{%- if (confd__config.app_id is defined) and (confd__config.app_id is not none) %}
+app_id = "{{ confd__config.app_id }}"
+{%  endif %}
+
+{%- if (confd__config.user_id is defined) and (confd__config.user_id is not none) %}
+user_id = "{{ confd__config.user_id }}"
+{%  endif %}
+
+{%- if (confd__config.role_id is defined) and (confd__config.role_id is not none) %}
+role_id = "{{ confd__config.role_id }}"
+{%  endif %}
+
+{%- if (confd__config.secret_id is defined) and (confd__config.secret_id is not none) %}
+secret_id = "{{ confd__config.secret_id }}"
+{%  endif %}
+
+{%- if (confd__config.file is defined) and (confd__config.file is not none) %}
+file = [{{ confd__config.file| map('regex_replace','^(.*)$','"\\1"')|join(', ') }}]
+{%  endif %}
+
+{%- if (confd__config.filter is defined) and (confd__config.filter is not none) %}
+filter = "{{ confd__config.filter }}"
+{%  endif %}
+
+{%- if (confd__config.path is defined) and (confd__config.path is not none) %}
+path = "{{ confd__config.path }}"
+{%  endif %}
+{% endif %}

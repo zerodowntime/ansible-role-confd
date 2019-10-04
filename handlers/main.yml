@@ -1,0 +1,9 @@
+---
+
+- name: restart confd
+  systemd:
+    name: "{{ confd__systemd_service_name }}"
+    state: restarted
+    enabled: "{{ confd__systemd_service_enabled }}"
+  tags:
+    - confd

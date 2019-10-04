@@ -1,0 +1,26 @@
+{{ auto_docs.title() }}
+
+{{ auto_docs.description() }}
+
+{{ auto_docs.requiremenents() }}
+
+{{ auto_docs.platforms() }}
+
+{{ auto_docs.defaults() }}
+
+{{ auto_docs.vars() }}
+
+## Example Playbook
+
+```yaml
+    - hosts: all
+      become: true
+      vars:
+        confd__package_name: https://packages.zdt.io/confd-0.16.0-1.el7.x86_64.rpm
+      roles:
+        - role: zerodowntime.confd
+```
+
+{{ auto_docs.license() }}
+
+{{ auto_docs.contributors() }}

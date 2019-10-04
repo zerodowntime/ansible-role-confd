@@ -1,0 +1,23 @@
+[template]
+src = "{{ item.value.src }}.tmpl"
+dest = "{{ item.value.dest }}"
+{% if (item.value.owner is defined) and (item.value.owner) %}
+owner = "{{ item.value.owner }}"
+{% endif %}
+{% if (item.value.uid is defined) and (item.value.uid) %}
+uid = {{ item.value.uid }}
+{% endif %}
+{% if (item.value.gid is defined) and (item.value.gid) %}
+gid = {{ item.value.gid }}
+{% endif %}
+{% if (item.value.mode is defined) and (item.value.mode) %}
+mode = "{{ item.value.mode }}"
+{% endif %}
+{% if (item.value.key is defined) and (item.value.key) %}
+keys = [
+{{ item.value.key|map('regex_replace','^(.*)$','"\\1"')|join(',\n')|indent(3,true) }}
+]
+{% endif %}
+{% if (item.value.reload_cmd is defined) and (item.value.reload_cmd) %}
+reload_cmd = "{{ item.value.reload_cmd }}"
+{% endif %}

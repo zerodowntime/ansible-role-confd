@@ -1,0 +1,117 @@
+{% if confd__confd_toml %}
+{%- if confd__confd_toml.backend is not none %}
+backend = "{{ confd__confd_toml.backend }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.client_cakeys is defined) and (confd__confd_toml.client_cakeys is not none) %}
+client_cakeys = "{{ confd__confd_toml.client_cakeys }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.client_cert is defined) and (confd__confd_toml.client_cert is not none) %}
+client_cert = "{{ confd__confd_toml.client_cert }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.client_key is defined) and (confd__confd_toml.client_key is not none) %}
+client_key = "{{ confd__confd_toml.client_key }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.confdir is defined) and (confd__confd_toml.confdir is not none) %}
+confdir = "{{ confd__confd_toml.confdir }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.interval is defined) and  (confd__confd_toml.interval is not none) %}
+interval = {{ confd__confd_toml.interval }}
+{%  endif %}
+
+{%- if (confd__confd_toml.log_level is defined) and (confd__confd_toml.log_level is not none) %}
+log-level = "{{ confd__confd_toml.log_level }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.nodes is defined) and (confd__confd_toml.nodes is not none) %}
+nodes = [{{ confd__confd_toml.nodes| map('regex_replace','^(.*)$','"\\1"')|join(', ') }}]
+{%  endif %}
+
+{%- if (confd__confd_toml.noop is defined) and (confd__confd_toml.noop is not none) %}
+noop = {{ confd__confd_toml.noop }}
+{%  endif %}
+
+{%- if (confd__confd_toml.prefix is defined) and (confd__confd_toml.prefix is not none) %}
+prefix = "{{ confd__confd_toml.prefix }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.scheme is defined) and (confd__confd_toml.scheme is not none) %}
+scheme = "{{ confd__confd_toml.scheme }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.srv_domain is defined) and (confd__confd_toml.srv_domain is not none) %}
+srv_domain = "{{ confd__confd_toml.srv_domain }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.srv_record is defined) and (confd__confd_toml.srv_record is not none) %}
+srv_record = "{{ confd__confd_toml.srv_record }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.sync_only is defined) and (confd__confd_toml.sync_only is not none) %}
+sync-only = {{ confd__confd_toml.sync_only }}
+{%  endif %}
+
+{%- if (confd__confd_toml.watch is defined) and (confd__confd_toml.watch is not none) %}
+watch = {{ confd__confd_toml.watch|bool|lower }}
+{%  endif %}
+
+{%- if (confd__confd_toml.auth_token is defined) and (confd__confd_toml.auth_token is not none) %}
+auth_token = "{{ confd__confd_toml.auth_token }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.auth_type is defined) and (confd__confd_toml.auth_type is not none) %}
+auth_type = "{{ confd__confd_toml.auth_type }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.basic_auth is defined) and (confd__confd_toml.basic_auth is not none) %}
+basic_auth = {{ confd__confd_toml.basic_auth }}
+{%  endif %}
+
+{%- if (confd__confd_toml.table is defined) and (confd__confd_toml.table is not none) %}
+table = "{{ confd__confd_toml.table }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.separator is defined) and (confd__confd_toml.separator is not none) %}
+separator = "{{ confd__confd_toml.separator }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.username is defined) and (confd__confd_toml.username is not none) %}
+username = "{{ confd__confd_toml.username }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.password is defined) and (confd__confd_toml.password is not none) %}
+password = "{{ confd__confd_toml.password }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.app_id is defined) and (confd__confd_toml.app_id is not none) %}
+app_id = "{{ confd__confd_toml.app_id }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.user_id is defined) and (confd__confd_toml.user_id is not none) %}
+user_id = "{{ confd__confd_toml.user_id }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.role_id is defined) and (confd__confd_toml.role_id is not none) %}
+role_id = "{{ confd__confd_toml.role_id }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.secret_id is defined) and (confd__confd_toml.secret_id is not none) %}
+secret_id = "{{ confd__confd_toml.secret_id }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.file is defined) and (confd__confd_toml.file is not none) %}
+file = [{{ confd__confd_toml.file| map('regex_replace','^(.*)$','"\\1"')|join(', ') }}]
+{%  endif %}
+
+{%- if (confd__confd_toml.filter is defined) and (confd__confd_toml.filter is not none) %}
+filter = "{{ confd__confd_toml.filter }}"
+{%  endif %}
+
+{%- if (confd__confd_toml.path is defined) and (confd__confd_toml.path is not none) %}
+path = "{{ confd__confd_toml.path }}"
+{%  endif %}
+{% endif %}

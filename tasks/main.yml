@@ -1,0 +1,60 @@
+---
+# zerodowntime.confd/tasks/main.yml
+
+- name: confd | Install confd package
+  yum:
+    name: "{{ confd__package_name }}"
+    state: "{{ confd__package_state }}"
+  tags:
+    - confd
+
+- name: confd | confd.toml main configuration file
+  template:
+    src: templates/main.config.toml.j2
+    dest: /etc/confd/confd.toml
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart confd
+  tags:
+    - confd
+    - confd::config
+
+- name: confd | conf.d.toml configuration files
+  template:
+    src: templates/confd.j2
+    dest: "/etc/confd/conf.d/{{ item.key }}.toml"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ confd__confd|dict2items }}"
+  notify:
+    - restart confd
+  tags:
+    - confd
+    - confd::config
+
+- name: confd | templates configuration files
+  copy:
+    content: "{{ item.value }}"
+    dest: "/etc/confd/templates/{{ item.key }}.tmpl"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ confd__templates|dict2items }}"
+  notify:
+    - restart confd
+  tags:
+    - confd
+    - confd::config  
+
+
+
+- name: confd | Enable and start confd service
+  systemd:
+    name: "{{ confd__systemd_service_name }}"
+    state: "{{ confd__systemd_service_state }}"
+    enabled: "{{ confd__systemd_service_enabled }}"
+  tags:
+    - confd

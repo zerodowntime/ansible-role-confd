@@ -1,0 +1,178 @@
+---
+# zerodowntime.confd/defaults/main.yml
+
+#? confd__package_name:
+#?   type: string
+#?   description: Package to be installed.
+#?   required: True
+confd__package_name: confd
+
+#? confd__package_state:
+#?   type: string
+#?   description: Whether to install the package or not.
+#?   required: True
+confd__package_state: present
+
+#? confd__systemd_service_name:
+#?   type: string
+#?   description: Name of the service.
+#?   required: True
+confd__systemd_service_name: confd
+
+#? confd__systemd_service_state:
+#?   type: string
+#?   description: State of the systemd service.
+#?   required: True
+confd__systemd_service_state: started
+
+#? confd__systemd_service_enabled:
+#?   type: bool
+#?   description: Whether the service should start on boot.
+#?   required: True
+confd__systemd_service_enabled: true
+
+#? confd__config:
+#?   type: dict
+#?   description: Configuration of confd.toml file.
+#?   required: True
+#?   default: Check defaults/main.yml file for more info.
+# Values description:
+# backend:
+#         type: string
+#         description: Backend to use (default "etcd").
+# client_cakeys:
+#         type: string
+#         description: The client CA key file.
+# client_cert:
+#         type: string
+#         description: The client cert file.
+# client_key:
+#         type: string
+#         description: The client key file.
+# confdir:
+#         type: string
+#         description:  The path to confd configs (default "/etc/confd").
+# interval:
+#         type: int
+#         description: The backend polling interval in seconds (default 600).
+# log_level:
+#         type: string
+#         description: The level which confd should log messages (default "info")
+# nodes:
+#         type: array of strings
+#         description: List of backend nodes (default ["http://127.0.0.1:4001"]).
+# noop:
+#         type: bool
+#         description: Enable noop mode. Process all template resources; skip target update.
+# prefix:
+#         type: string
+#         description: The string to prefix to keys. (default "/")
+# scheme:
+#         type: string
+#         description: The backend URI scheme (default "http" or "https").
+# srv_domain:
+#         type: string
+#         description: The name of the resource record.
+# srv_record:
+#         type: string
+#         description: The SRV record to search for backends nodes.
+# sync_only:
+#         type: bool
+#         description: Sync without check_cmd and reload_cmd.
+# watch:
+#         type: bool
+#         description: Enable watch support.
+# auth_token:
+#         type: string
+#         description: Auth bearer token to use.
+# auth_type:
+#         type: string
+#         description: Vault auth backend type to use.
+# basic_auth:
+#         type: bool
+#         description: Use Basic Auth to authenticate (only used with -backend=consul and -backend=etcd).
+# table:
+#         type: string
+#         description: The name of the DynamoDB table (only used with -backend=dynamodb).
+# separator:
+#         type: string
+#         description: The separator to replace '/' with when looking up keys in the backend,
+#                      prefixed '/' will also be removed (only used with -backend=redis)
+# username:
+#         type: string
+#         description: The username to authenticate as (only used with vault and etcd backends).
+# password:
+#         type: string
+#         description: The password to authenticate with (only used with vault and etcd backends).
+# app_id:
+#         type: string
+#         description: Vault app-id to use with the app-id backend (only used with -backend=vault and auth-type=app-id)
+# user_id:
+#         type: string
+#         description: Vault app-id to use with the app-id backend (only used with -backend=vault and auth-type=app-id).
+# role_id:
+#         type: string
+#         description: Vault role-id to use with the AppRole, Kubernetes backends (only used with -backend=vault and
+#                      either auth-type=app-role or auth-type=kubernetes).
+# secret_id:
+#         type: string
+#         description: Vault secret-id to use with the AppRole backend (only used with -backend=vault and auth-type=app-role).
+# file:
+#         type: array of strings
+#         description: The YAML file to watch for changes (only used with -backend=file).
+# filter:
+#         type: string
+#         description: Files filter (only used with -backend=file) (default "*").
+# path:
+#         type: string
+#         description: Vault mount path of the auth method (only used with -backend=vault).
+
+confd__config:
+  backend: "etcdv3"
+  #client_cakeys:
+  #client_cert:
+  #client_key:
+  confdir: '/etc/confd'
+  interval: 300
+  log_level: 'info'
+  nodes:
+    - http://127.0.0.1:2379
+# noop:
+# prefix: "/"
+# scheme:
+# srv_domain:
+# srv_record:
+# sync_only:
+# watch:
+# auth_token:
+# auth_type:
+# basic_auth:
+# table:
+# separator:
+# username:
+# password:
+# app_id:
+# user_id:
+# role_id:
+# secret_id:
+# file:
+# filter:
+# path:
+
+confd__confd: {}
+# confd__confd:
+#   name1:
+#     src: "extra.haproxy.conf.tmpl"
+#     dest: "/etc/haproxy/conf.d/extra.haproxy.conf"
+#     owner : haproxy
+#     uid : 996
+#     gid : 1001
+#     mode : "0644"
+#     key:
+#       - servers/lb1
+#       - servers/lb2
+#     reload_cmd: "/bin/systemctl restart haproxy"
+
+
+confd__templates: {}
+#  name1: content

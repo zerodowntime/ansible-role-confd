@@ -1,0 +1,19 @@
+---
+# zerodowntime.confd/meta/main.yml
+
+galaxy_info:
+  author: ZeroDowntime <ansible@zerodowntime.pl>
+  company: ZeroDowntime Sp. z o.o.
+  role_name: confd
+  description: Role to install and configure confd package
+  license: Apache License 2.0
+
+  min_ansible_version: 2.7
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+
+  galaxy_tags:
+    - system
